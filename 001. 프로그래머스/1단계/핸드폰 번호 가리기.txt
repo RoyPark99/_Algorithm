@@ -1,0 +1,16 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string phone_number) {
+    string answer = "";
+    answer = phone_number;
+    int nPos = answer.size() - 4;
+    for (int i = 0; i < nPos; i++)
+    {
+        answer[i] = '*';
+    }
+        
+    return answer;
+}

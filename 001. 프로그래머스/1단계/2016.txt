@@ -1,0 +1,17 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+const int month[] = {31,29,31,30,31,30,31,31,30,31,30,31};
+const string ans[] = {"THU","FRI","SAT","SUN","MON","TUE","WED"};
+ 
+string solution(int mon, int day) {
+    int days = day;
+    for (int i = 0; i < mon - 1; i++)
+    {
+        days += month[i];
+    }
+    
+    return ans[days % 7];
+}

@@ -1,0 +1,54 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool isAllowChar(char c)
+{
+	if (c >= 'a' && c <= 'z')
+		return false;
+	else if (isdigit(c) || c == '-' || c == '_' || c == '.')
+		return false;
+	return true;
+}
+
+string solution(string s) {
+	// 1
+	::transform(s.begin(), s.end(), s.begin(), ::tolower);
+
+	// 2 
+	s.erase(remove_if(s.begin(), s.end(), isAllowChar), s.end());
+
+	//3 ..
+	for (int i = 0; i < s.size();)
+	{
+		if (s[i] == '.' && s[i + 1] == '.')
+		{
+			s.erase(s.begin() + i);
+			continue;
+		}
+
+		i++;
+	}
+
+	//4
+	if (s.front() == '.') s.erase(s.begin());
+	if (s.back() == '.') s.erase(s.end() - 1);
+
+	//5
+	if (s.length() == 0)
+		s = "a";
+
+	//6 
+	if (s.length() >= 16)
+		s.erase(s.begin() + 15, s.end());
+	if (s.back() == '.')
+		s.pop_back();
+
+	//7
+	if (s.length() <= 2)
+		s.append(3 - s.length(), s.back());
+
+	return s;
+}

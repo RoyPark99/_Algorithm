@@ -1,0 +1,23 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool solution(int x) {
+    bool answer = true;
+    
+    string number = to_string(x);
+    
+    int sum = 0;
+    for (int i = 0; i < number.size(); i++)
+    {
+        sum += stoi(number.substr(i, 1));
+    }
+    
+   if (x % sum)
+    {
+        answer = false;
+    }
+    
+    return answer;
+}

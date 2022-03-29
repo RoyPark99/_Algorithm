@@ -1,0 +1,56 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+   
+typedef struct _SUPOJA {
+    int hitcnt;
+    int index;
+    vector<int> a;
+} SUPOJA, *PSUPOJA;
+
+vector<int> solution(vector<int> answers) {
+    vector<int> answer;
+    
+    vector<SUPOJA> vec{{0, 1, {1, 2, 3, 4, 5}}, 
+                       {0, 2, {2, 1, 2, 3, 2, 4, 2, 5}}, 
+                       {0, 3, {3, 3, 1, 1, 2, 2, 4, 4, 5, 5}} };
+    
+    for (int i = 0; i < vec.size(); i++)
+    {
+        int pos = 0;
+        for (int j = 0; j < answers.size(); j++, pos++)
+        {
+            // 정답 개수를 초과하면 처음으로 이동
+            if (vec[i].a.size() <= pos)
+            {
+                pos = 0;                
+            }
+            
+            // 정답이면
+            if (vec[i].a[pos] == answers[j])
+            {
+                vec[i].hitcnt++;
+            }
+        }
+    }
+    
+    // 맞힌 개수 오름차순
+    sort(vec.begin(), vec.end(), [](SUPOJA &a, SUPOJA &b){return a.hitcnt < b.hitcnt;});
+    
+    if (vec.at(vec.size() - 1).hitcnt != vec.at(vec.size() - 2).hitcnt)
+    {
+        answer.push_back(vec.back().index);        
+    }
+    else
+    {
+        for (auto it : vec)
+		{
+			if (it.hitcnt == vec.back().hitcnt)
+				answer.push_back(it.index);
+		}
+    }
+        
+    return answer;
+}

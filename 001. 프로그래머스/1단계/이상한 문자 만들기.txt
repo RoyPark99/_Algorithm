@@ -1,0 +1,34 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s) {
+    string answer = "";
+    
+    int index = 0;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (isalpha(s[i]))
+        {
+            if (!(index % 2))
+            {
+                answer.push_back(toupper(s[i]));
+            }
+            else
+            {
+                answer.push_back(tolower(s[i]));
+            }
+        }
+        else
+        {
+            answer.push_back(s[i]);
+            index = 0;
+            continue;
+        }
+                              
+        index++;
+    }
+    
+    return answer;
+}

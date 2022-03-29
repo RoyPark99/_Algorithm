@@ -1,0 +1,45 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s, int n) {
+    string answer = "";
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        char c = s[i];
+        
+        if (isspace(c))
+        {
+            continue;
+        }
+        
+        if(isupper(c))
+        {
+            int pos = c + n;
+            if (pos > 0x5A)
+            {
+                s[i] = 0x40 + (pos - 0x5A);
+            }
+            else
+            {
+                s[i] = c + n;
+            }
+        }
+        else
+        {
+            int pos = c + n;
+            if (pos > 0x7A)
+            {
+                s[i] = 0x60 + (pos - 0x7A);
+            }
+            else
+            {
+                s[i] = c + n;
+            }
+        }
+    }
+    
+    return s;
+}

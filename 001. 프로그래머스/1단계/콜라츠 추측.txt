@@ -1,0 +1,45 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int num) {
+    int answer = 0;
+    
+    if (num == 1)
+        return 0;
+    
+    long long num2 = num;
+    
+    if (num2 < 1 || num2 >= 8000000)
+    {
+        return -1;
+    }
+       
+    while (true)
+    {
+        if ((num2 % 2) == 0)
+        {
+            num2 /= 2;
+        }
+        else
+        {
+            num2 *= 3;
+            num2 += 1;
+        }
+            
+        answer++;
+        
+        if (num2 == 1)
+        {
+            return answer;
+        }
+        
+        if (answer >= 500)
+        {
+            return -1;
+        }
+    }
+    
+    return -1;
+}

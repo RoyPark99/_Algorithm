@@ -1,0 +1,27 @@
+#include <string>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int np = 0;
+int ny = 0;
+
+void func(char c)
+{
+    if (c == 'p' || c == 'P')
+        np++;
+    else if (c == 'y' || c == 'Y')
+        ny++;
+}
+
+bool solution(string s)
+{
+    bool answer = true;
+    for_each(s.begin(), s.end(), func);
+    for_each(s.begin(), s.end(), func);
+    
+    if (np != ny)
+        answer = false;
+
+    return answer;
+}

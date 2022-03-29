@@ -1,0 +1,76 @@
+#include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+typedef struct _VAL {
+    int stgnum;
+    int ing;
+    int count;
+    double failrate;
+} VAL, *PVAL;
+
+map<int, VAL> map1;
+
+vector<int> solution(int N, vector<int> stages) {
+    vector<int> answer;
+
+    // 맵에 스테이지를 넣는다.
+    for (int i = 1; i <= N; i++)
+    {
+        map1.emplace(make_pair(i, VAL{ i, 0, 0 }));
+    }
+
+    // 입력된 스테이지 정보를 갱신한다.
+    for (int j = 0; j < stages.size(); j++)
+    {
+        if (map1.find(stages[j]) != map1.end())
+        {
+            // 현재 풀고 있는 사용자
+            map1[stages[j]].ing++;
+
+            // 방문한 카운터 갱신
+            for (int k = 1; k <= stages[j]; k++)
+            {
+                map1[k].count++;
+            }
+        }
+        else
+        {
+            if (stages[j] == N + 1)
+            {
+                for (int k = 1; k <= N; k++)
+                {
+                    map1[k].count++;
+                }
+            }
+        }
+    }
+
+    // 실패율 계산  
+    vector<pair<int, VAL>> vec;
+    for (auto mapit : map1)
+    {
+        if (mapit.second.count)
+        {
+            mapit.second.failrate = (double)mapit.second.ing / mapit.second.count;
+        }
+
+        vec.push_back(mapit);
+    }
+
+    sort(vec.begin(), vec.end(), [](pair<int, VAL> &a, pair<int, VAL> &b)
+     {
+        if (a.second.failrate == b.second.failrate)
+            return a.second.stgnum < b.second.stgnum;
+         return a.second.failrate > b.second.failrate;
+     });
+
+
+    for (auto vec1 : vec)
+        answer.push_back(vec1.second.stgnum);
+
+    return answer;
+}
