@@ -1,0 +1,23 @@
+#include <string>
+#include <vector>
+#include <bitset>
+#include <algorithm>
+
+using namespace std;
+
+vector<string> solution(int n, vector<int> arr1, vector<int> arr2) {
+    vector<string> answer;
+
+    for (int i = 0; i < arr1.size(); i++)
+    {
+        string tmp = bitset<20>(arr1[i] | arr2[i]).to_string();
+        tmp = tmp.substr(20 - n);
+        replace(tmp.begin(), tmp.end(), '1', '#');
+        replace(tmp.begin(), tmp.end(), '0', ' ');
+        answer.push_back(tmp);
+    }
+    
+    
+    
+    return answer;
+}
