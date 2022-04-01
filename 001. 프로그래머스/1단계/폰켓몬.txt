@@ -1,0 +1,70 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<pair<int, int>> vec;
+
+void put(int n)
+{
+    bool find = true;
+    for (int i = 0; i < vec.size(); i++)
+    {
+        if (vec[i].first == n)
+        {
+            vec[i].second++;
+            find = false;
+            break;
+        }
+    }
+    
+    if(find)
+    {
+        vec.push_back(pair<int, int>(n, 1));
+    }
+}
+
+int solution(vector<int> nums)
+{
+    int answer = 0;
+    int cnt = nums.size() / 2;
+    
+    // vec에 순서대로 넣고 있으면 카운트만 올린다.
+    for (int i = 0; i < nums.size(); i++)
+    {
+        put(nums[i]);
+    }
+    
+    // 내림차순으로 정렬하고
+    sort(vec.begin(), vec.end(), [](pair<int, int> &a, pair<int, int> &b){return a.second < b.second;});
+    
+    if (vec.size() >= cnt)
+    {
+        answer = cnt;
+    }
+    else
+    {
+        answer = vec.size();
+    }
+    
+    return answer;
+}
+
+
+
+
+
+
+
+
+
+{
+#include <bits/stdc++.h>
+using namespace std;
+
+int solution(vector<int> nums) {
+    unordered_set<int> s(nums.begin(), nums.end());
+
+    return min(nums.size() / 2, s.size());
+}
+}
