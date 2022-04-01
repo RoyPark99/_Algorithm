@@ -1,0 +1,74 @@
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+typedef struct _INFO {
+    int c;
+    vector<string> r;
+} INFO;
+
+vector<int> solution(vector<string> id_list, vector<string> report, int k) {
+    vector<int> answer;
+    map<string, INFO> rlist;
+    
+    for (int i = 0; i < report.size(); i++)
+    {
+        string::size_type n = report[i].find(" ");
+            
+        // 신고자를 구한다.
+        string s1 = report[i].substr(0, n);
+        // 피신고자를 구한다.
+        string s2 = report[i].substr(n);
+        
+        if (rlist.find(s2) != rlist.end())
+        {
+            bool pass = true;
+            
+            // 신고자 리스트에 없으면 카운트 올림
+            for (auto vec : rlist[s2].r)
+            {
+                if (vec == s1)
+                {
+                    pass = false;
+                    break;
+                }
+            }
+            
+            if (pass)
+            {
+                rlist[s2].c++;
+                rlist[s2].r.push_back(s1);
+            }
+        }
+        else
+        {
+            rlist.emplace(pair<string, INFO> (s2, {1, {s1}}));
+        }
+    }
+    
+    for (auto vec : id_list)
+    {
+        answer.push_back(0);
+    }
+    
+    for (auto map : rlist)
+    {
+        if (map.second.c >= k)
+        {
+            for (int j = 0; j < map.second.r.size(); j++)
+            {
+                for (int i = 0; i < id_list.size(); i++)
+                {
+                    if (map.second.r[j] == id_list[i])
+                    {
+                        answer[i]++;
+                    }
+                }
+            }   
+        }
+    }
+    
+    return answer;
+}
