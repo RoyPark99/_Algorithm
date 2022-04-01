@@ -1,0 +1,43 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int putbox(int n, vector<int> &vec)
+{
+    int del = 0;
+    if (!vec.empty() && vec.back() == n)
+    {
+        del = 2;
+        vec.pop_back();
+    }
+    else
+    {
+        vec.push_back(n);        
+    }
+    
+    return del;
+}
+
+// 보드 상황 배열로, 이동 순서
+int solution(vector<vector<int>> board, vector<int> moves) {    
+    int answer = 0;
+    vector<int> box;
+    
+    for (int i = 0; i < moves.size(); i++)
+    {
+        int line = moves[i] - 1;
+        //for (int j = board.size() - 1; j >= 0; j--)
+        for (int j = 0; j < board.size(); j++)
+        {
+            if (board[j][line])
+            {
+                answer += putbox(board[j][line], box);
+                board[j][line] = 0;
+                break;
+            }
+        }
+    }
+    
+    return answer;
+}
