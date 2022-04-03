@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(int n) {
+    string answer = "";
+    vector<string> num = { "1", "2", "4" };
+
+    while (true)
+    {
+        // 입력받은 숫자에서 -1
+        n = n - 1;
+        
+        // 나머지를 인덱스로 숫자를 넣는다.
+        answer = num[n % 3] + answer;
+        
+        // 계속 나눠서 0이면 멈춘다.
+        if (n <= 0) 
+            break;
+        
+        // 계속 3으로 나눈다 3개이니깐,,,
+        n /= 3;
+    }
+    
+    return answer;
+}
