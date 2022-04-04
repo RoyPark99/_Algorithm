@@ -1,0 +1,35 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> arr) {
+    int answer = 0;
+    // 숫자들중에서 가장 큰수의 배수중에서 나머지 숫자들이 나누어질때
+    
+    int max = *max_element(arr.begin(), arr.end());
+    int baesu = 2;
+    
+    while (1)
+    {
+        bool pass = true;
+        for (int i = 0; i < arr.size(); i++)
+        {
+            if ((max * baesu) % arr[i] != 0)
+            {
+                pass = false;
+                baesu++;
+                break;
+            }
+        }
+        
+        if (pass)
+        {
+            answer = max * baesu;
+            break;
+        }
+    }
+    
+    return answer;
+}
