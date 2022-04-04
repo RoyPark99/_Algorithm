@@ -1,0 +1,39 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n) {
+    int answer = 0;
+    
+    // 절반 이상이면 15를 넘어서 필요없다.
+    for(int i = 1; i <= n / 2; i++)
+    {
+        int sum = 0;
+        
+        // i ~ n 까지 더하면서 >n이면 중단하고
+        // ==n이면 카운트 올리고
+        // <n이면 다음 숫자 더해보고 하는 식으로 카운트를 찾는다.
+        for(int j = i; j <= n; j++)
+        {
+            if (sum > n)
+            {
+                sum = 0;
+                break;
+            }
+            else if (sum == n)
+            {
+                answer++;
+                break;
+            }
+            else if (sum < n)
+            {
+                sum += j;
+            }
+        }
+    }
+    
+    answer++;
+    
+    return answer;
+}
