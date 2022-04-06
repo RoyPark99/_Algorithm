@@ -43,7 +43,7 @@ int solution(string numbers) {
         while (next_permutation(numbers.begin(), numbers.end()));
     }
     
-    // set 순회해서 소수인것만 카운트
+    // set 순회해서 소수인것만 카운트 
     for (auto s : set)
     {
         if (s > 1)
