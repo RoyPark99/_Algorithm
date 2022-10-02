@@ -43,7 +43,7 @@ int solution(string dirs) {
             continue;
         }
         
-        // 도착 위치 만들고, 맵에 넣으면 중복된 값의 경우 추가가 안된다.
+        // 도착 위치 만들고, 맵에 넣으면 중복된 값의 경우 추가가 안된다. 
         string to = to_string(y) + "," + to_string(x);
         m.insert(make_pair("(" + from + ")->(" + to + ")", 1));
         m.insert(make_pair("(" + to + ")->(" + from + ")", 1));
