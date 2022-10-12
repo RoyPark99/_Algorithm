@@ -2,10 +2,13 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+
 using namespace std;
+
 bool visit[20];
 string item, tmp;
 map<string,int> ans;
+
 void dfs(int index, int count, string& order){
     if(2<=count&&count<=10){
         tmp=item;
