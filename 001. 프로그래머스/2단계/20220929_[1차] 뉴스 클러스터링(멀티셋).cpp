@@ -50,7 +50,7 @@ int solution(string str1, string str2) {
     multiset<string> ms2 = getElement(str2);
     // 교집합을 구한다.
     multiset<string> s4 = getInter(ms1, ms2);
-    // 교집합으로 합진합 개수를 구한다.
+    // 교집합으로 합집합 개수를 구한다.
     int inter = s4.size();
     int uni = ms1.size() + ms2.size() - inter;
     

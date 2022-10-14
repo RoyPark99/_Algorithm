@@ -2,20 +2,21 @@
 #include <vector>
 #include <algorithm>
 #include <bitset>
+#include <iostream>
 
 using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer{0,0};
     
-    while (1)
-    {
+    while (1) {
         if (s == "1")
             break;
         
         // 0제거
         int orgsize = s.size();
         s.erase(remove(s.begin(), s.end(), '0'), s.end());
+        //cout << s << endl;
         int size = s.size();
         
         // 1개수를 2진법으로 변환
@@ -23,7 +24,9 @@ vector<int> solution(string s) {
         long long nn = stoll(s);
         s = to_string(nn);
         
+        // 0을 제거한 횟수
         answer[0]++;
+        // 제거된 0의 개수
         answer[1] += (orgsize - size);
     }
     

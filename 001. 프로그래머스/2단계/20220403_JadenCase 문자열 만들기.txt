@@ -3,44 +3,35 @@
 
 using namespace std;
 
+// 20221007리뷰 : 이 문제는 첫 단어의 첫 글자를 대문자로 변환하는데 의의가 있다.
 string solution(string s) {
     string answer = "";
-    
-    for (int i = 0; i < s.size(); i++)
+    for (int i = 0; i < s.size(); i++) 
     {
         // 첫 글자가 영문이면 무조건 대문자로 그 외에는 무시
-        if (i == 0)
+        if (i == 0) 
         {
             if (isalpha(s[i]))
-            {
                 s[i] = toupper(s[i]);
-            }
         }
-        else
+        else        
         {
             // 빈칸의 다음자리에 문자면 무조건 대문자
-            if (isspace(s[i]))
+            if (isspace(s[i])) 
             {
                 if (isalpha(s[i + 1]))
-                {
                     s[i + 1] = toupper(s[i + 1]);
-                }
             }
-            else
+            else            
             {
                 // 그외에 대문자이면서 알파벳이면 
                 if (s[i] >= 'A' && s[i] <= 'Z')
-                {
                     if (!isspace(s[i - 1]))
-                    {
                         s[i] = tolower(s[i]);
-                    }
-                }
             }
         }
     }
     
     answer = s;
-    
     return answer;
 }

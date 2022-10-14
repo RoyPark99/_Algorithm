@@ -7,8 +7,7 @@
 
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b)
-{
+bool cmp(pair<int, int> a, pair<int, int> b) {
     return a.second > b.second;
 }
 
@@ -20,8 +19,10 @@ vector<string> split(string s, string divid) {
         //cout << (string)c << " ";
 		c = strtok(NULL, divid.c_str());
 	}
+    //cout << s;
 	return v;
 }
+
 // 전체 스플릿을 하고 원소 개수가 많은것 부터 가장 왼쪽에 넣는다.
 vector<int> solution(string s) {
     vector<int> answer;

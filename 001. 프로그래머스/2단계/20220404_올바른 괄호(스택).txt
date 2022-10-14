@@ -4,39 +4,32 @@
 
 using namespace std;
 
-bool solution(string s)
-{
-    bool answer = true;
+// 20221007리뷰 : 올바른괄호 만들기의 초보 버전이다.
+bool solution(string s) {
     stack<int> st;
     
+    // 스택에 넣고 뺀 카운트를 위한 변수.
     int pushcnt = 0;
     int popcnt = 0;
     
-    for (int i = 0; i < s.size(); i++)
-    {
-        if (s[i] == '(')
-        {
+    for (int i = 0; i < s.size(); i++) {
+        // '('의 개수를 세면서 스택에 넣는다.
+        if (s[i] == '(') {
             st.push(s[i]);
             pushcnt++;
         }
         
-        if (s[i] == ')')
-        {
+        // ')'이면 스택에서 뺀다.
+        if (s[i] == ')') {
             popcnt++;
-
             if (!st.empty())
                 st.pop();
         }
     }
     
+    // 스택이 비었고, 카운트가 있고, 들어가고 나간 개수가 같으면 정상 괄호이다.
     if (st.empty() && pushcnt && popcnt && pushcnt == popcnt)
-    {
         return true;
-    }
-    else
-    {
-        return false;
-    }
     
-    return answer;
+    return false;
 }

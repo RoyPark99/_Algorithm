@@ -7,25 +7,23 @@ using namespace std;
 int solution(vector<int> arr) {
     int answer = 0;
     // 숫자들중에서 가장 큰수의 배수중에서 나머지 숫자들이 나누어질때
-    
     int max = *max_element(arr.begin(), arr.end());
     int baesu = 2;
     
-    while (1)
-    {
+    while (1) {
         bool pass = true;
-        for (int i = 0; i < arr.size(); i++)
-        {
-            if ((max * baesu) % arr[i] != 0)
-            {
+        // 최고 큰값의 배수에 나머지 값들이 나눠지면 최소공배수이다.
+        for (int i = 0; i < arr.size(); i++) {
+            // 안나눠지면 배수를 올린다.
+            if ((max * baesu) % arr[i] != 0) {
                 pass = false;
                 baesu++;
                 break;
             }
         }
         
-        if (pass)
-        {
+        // arr의 모든 원소로 나눠지면 최소공배수이다.
+        if (pass) {
             answer = max * baesu;
             break;
         }

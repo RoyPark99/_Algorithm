@@ -5,14 +5,10 @@
 
 using namespace std;
 
-bool isPrior(int n, vector<pair<int, int>> &v)
-{
+bool isPrior(int n, vector<pair<int, int>> &v) {
     for (auto vec : v)
-    {
         if (n < vec.second)
             return true;
-    }
-    
     return false;
 }
 
@@ -45,7 +41,7 @@ int solution(vector<int> p, int l) {
         }
     }
     
-    // 반복하면서 print에 순서대로 들어가면 원하는 인덱스를 찾아서 리턴한다. 
+    // 반복하면서 print에 순서대로 들어가면 원하는 인덱스를 찾아서 리턴한다.
     for (int i = 0; i < print.size(); i++)
     {
         if (l == print[i])
