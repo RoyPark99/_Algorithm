@@ -7,3 +7,6 @@ content
 
 title
 content
+
+
+마스터추가1
